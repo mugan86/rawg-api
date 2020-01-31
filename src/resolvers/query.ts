@@ -1,4 +1,4 @@
-import { GenresResult, GenreItem } from './../interfaces/genres.interface';
+import { GenresResult, GenreItem } from "./../interfaces/genres.interface";
 import { IResolvers } from "graphql-tools";
 
 // Los resolvers de las operaciones de consulta para devolver información
@@ -15,18 +15,18 @@ const resolvers: IResolvers = {
             } catch (e) {
                 return {
                     status: false,
-                    message: 'Unexpected error: '.concat(e),
+                    message: "Unexpected error: ".concat(e),
                     genre: undefined
                 }
             }
             
         },
-        async genres(_: void, __: any, { dataSources}): Promise<GenresResult> {
+        async genres(_: void, __ , { dataSources}): Promise<GenresResult> {
             try {
                 const { count, next, previous, results}: GenresResult= await dataSources.genres.getAll();
                 return  {
                     status: true,
-                    message: 'Genres correct correctly',
+                    message: "Genres correct correctly",
                     count,
                     next,
                     previous,
@@ -35,10 +35,10 @@ const resolvers: IResolvers = {
             } catch(error) { 
                 return  {
                     status: false,
-                    message: 'Unexpected error: '.concat(error),
+                    message: "Unexpected error: ".concat(error),
                     count: -1,
-                    next: null,
-                    previous: null,
+                    next: undefined,
+                    previous: undefined,
                     results: [ ]
                 }
             }

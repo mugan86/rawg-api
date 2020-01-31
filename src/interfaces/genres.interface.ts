@@ -1,10 +1,10 @@
-import { Game } from './games.interface';
+import { Game } from "./games.interface";
 export interface GenresResult {
     status: boolean;
     message: string;
     count?: number;
-    next?: any;
-    previous?: any;
+    next?: string;
+    previous?: string;
     results?: GenreItem[];
     genre?: GenreItem
 }

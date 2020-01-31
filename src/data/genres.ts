@@ -1,4 +1,4 @@
-import { GenreItem } from './../interfaces/genres.interface';
+import { GenreItem } from "./../interfaces/genres.interface";
 import { RAWG } from "./rawg";
 import { GenresResult } from "./../interfaces/genres.interface";
 
@@ -9,7 +9,7 @@ export class Genres extends RAWG {
     }
 
     async getAll(): Promise<GenresResult> {
-        return await this.get('genres', {
+        return await this.get("genres", {
             cacheOptions: { ttl: 60 }
         });
     }

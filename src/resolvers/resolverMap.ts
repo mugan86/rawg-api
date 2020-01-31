@@ -1,5 +1,5 @@
-import { IResolvers } from 'graphql-tools';
-import query from './query';
+import { IResolvers } from "graphql-tools";
+import query from "./query";
 const resolversMap: IResolvers = {
     ...query
 };
