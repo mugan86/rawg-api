@@ -1,17 +1,20 @@
 type Query {
-    hello: String!
-    helloWithName(name: String!): String!
-    helloToGraphQLCourse: String!
-    genres: ResultGenre
+    genre(id: String!): ResultGenre
+    genres: ResultGenres
 }
 
 interface Result {
     status: Boolean!
     message: String!
-    count: Int!
 }
 
 type ResultGenre implements Result {
+  status: Boolean!
+  message: String!
+  genre: Genre
+}
+
+type ResultGenres implements Result {
     status: Boolean!
     message: String!
     count: Int!

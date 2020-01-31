@@ -2,13 +2,14 @@ import { Game } from './games.interface';
 export interface GenresResult {
     status: boolean;
     message: string;
-    count: number;
+    count?: number;
     next?: any;
     previous?: any;
-    results: Result[];
+    results?: GenreItem[];
+    genre?: GenreItem
 }
   
-interface Result {
+export interface GenreItem {
     id: number;
     name: string;
     slug: string;
