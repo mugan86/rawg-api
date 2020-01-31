@@ -1,0 +1,38 @@
+type Query {
+    hello: String!
+    helloWithName(name: String!): String!
+    helloToGraphQLCourse: String!
+    genres: ResultGenre
+}
+
+interface Result {
+    status: Boolean!
+    message: String!
+    count: Int!
+}
+
+type ResultGenre implements Result {
+    status: Boolean!
+    message: String!
+    count: Int!
+    next: String
+    previous: String
+    results: [Genre!]!
+}
+
+type Genre {
+  id: ID!
+  name: String!
+  slug: String!
+  games_count: Int!
+  image_background: String!
+  games: [Game!]!
+  following: Boolean
+}
+
+type Game {
+  id: ID!
+  slug: String!
+  name: String!
+  added: Int
+}
