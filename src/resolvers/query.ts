@@ -44,9 +44,9 @@ const resolvers: IResolvers = {
                 }
             }
         },
-        async games(_: void, __ , { dataSources}): Promise<GamesResult> {
+        async games(_: void, { page } , { dataSources}): Promise<GamesResult> {
             try {
-                const { count, next, previous, results}: GamesResult= await dataSources.games.getAll();
+                const { count, next, previous, results}: GamesResult= await dataSources.games.getAll(page);
                 return  {
                     status: true,
                     message: "Games correct correctly",

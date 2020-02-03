@@ -17,7 +17,7 @@ type Query {
     """ 
     genres: ResultGenres
     game(id: ID!): ResultGame
-    games: ResultGames
+    games(page: Int = 1): ResultGames
 
 }
 

@@ -29,6 +29,7 @@ export interface GameItem {
     short_screenshots: Shortscreenshot[];
 }
 
+
 interface Shortscreenshot {
     id: number;
     image: string;
