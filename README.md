@@ -4,7 +4,8 @@ Introduce el contenido de tu README
 
 Dentro de tsconfig.json en **compilerOptions**
 
-```"plugins": [
+```
+"plugins": [
     {
     "name": "typescript-tslint-plugin"
     }
