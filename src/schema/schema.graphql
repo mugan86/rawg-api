@@ -16,12 +16,20 @@ type Query {
     More info in ["Video Games genres List"](https://api.rawg.io/docs/#operation/genres_list)
     """ 
     genres: ResultGenres
+    game(id: ID!): ResultGame
     games: ResultGames
+
 }
 
 interface Result {
     status: Boolean!
     message: String!
+}
+
+type ResultGame implements Result {
+  status: Boolean!
+  message: String!
+  game: Game
 }
 
 type ResultGenre implements Result {

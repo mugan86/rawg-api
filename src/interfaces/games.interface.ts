@@ -37,10 +37,11 @@ interface Shortscreenshot {
 export interface GamesResult {
     status: boolean;
     message: string;
-    count: number;
+    count?: number;
     next?: number;
     previous?: string | undefined;
-    results: GameItem[];
+    results?: GameItem[];
+    game?: GameItem;
   }
 
   interface Tag {

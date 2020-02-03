@@ -12,6 +12,12 @@ export class Games extends RAWG {
         });
     }
 
+    async getItem(id: string): Promise<GamesResult> {
+        return await this.get(`games/${ id }`, {
+            cacheOptions: { ttl: 60 }
+        })
+    }
+
     async getDataBetweensGames() {
 
     }

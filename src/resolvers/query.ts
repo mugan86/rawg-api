@@ -1,6 +1,6 @@
 import { GenresResult, GenreItem } from "./../interfaces/genres.interface";
 import { IResolvers } from "graphql-tools";
-import { GamesResult } from "../interfaces/games.interface";
+import { GamesResult, GameItem } from "../interfaces/games.interface";
 
 // Los resolvers de las operaciones de consulta para devolver información
 const resolvers: IResolvers = {
@@ -63,6 +63,23 @@ const resolvers: IResolvers = {
                     next: undefined,
                     previous: undefined,
                     results: [ ]
+                }
+            }
+        },
+        async game(_: void, { id }, { dataSources}): Promise<GamesResult> {
+            try {
+                const game: GameItem = await dataSources.games.getItem(id);
+                return  {
+                    status: true,
+                    message: `Games with ${ id } correct correctly`,
+                    game
+                }
+            } catch(error) { 
+                console.log
+                return  {
+                    status: false,
+                    message: "Unexpected error: ".concat(error),
+                    game: undefined
                 }
             }
         }
