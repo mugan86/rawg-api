@@ -1,4 +1,4 @@
-import { Game } from "./games.interface";
+import { GameItem } from "./games.interface";
 export interface GenresResult {
     status: boolean;
     message: string;
@@ -15,7 +15,7 @@ export interface GenreItem {
     slug: string;
     games_count: number;
     image_background: string;
-    games: Game[];
+    games: GameItem[];
     following: boolean;
 }
   

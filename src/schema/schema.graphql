@@ -16,6 +16,7 @@ type Query {
     More info in ["Video Games genres List"](https://api.rawg.io/docs/#operation/genres_list)
     """ 
     genres: ResultGenres
+    games: ResultGames
 }
 
 interface Result {
@@ -38,6 +39,15 @@ type ResultGenres implements Result {
     results: [Genre!]!
 }
 
+type ResultGames implements Result {
+    status: Boolean!
+    message: String!
+    count: Int!
+    next: String
+    previous: String
+    results: [Game!]!
+}
+
 type Genre {
   ## Genre id value
   id: ID!
@@ -58,4 +68,53 @@ type Game {
   slug: String!
   name: String!
   added: Int
+  released: String
+  tba: Boolean
+  background_image: String
+  rating: Float!
+  rating_top: Float!
+  ratings: [Rating]
+  ratings_count: Float!
+  reviews_text_count: Int!
+  added_by_status: AddedByStatus
+  metacritic: Float!
+  playtime: Int!
+  suggestions_count: Int!
+  user_game: String
+  reviews_count: Int!
+  saturated_color: String
+  dominant_color: String
+  platforms: [Platform]
+  genres: [Genre!]!
+  ## stores: [StoreData]
+  ## clip: Clip
+  ## tags: Tag[]
+  ## short_screenshots: ShortScreenshot[]
+}
+
+type Rating {
+  id: ID!
+  title: String!
+  count: Int!
+  percent: Float!
+}
+
+type AddedByStatus {
+    yet: Int!
+    owned: Int!
+    beaten: Int!
+    toplay: Int!
+    dropped: Int!
+    playing: Int!
+}
+
+type Platform {
+  id: ID!
+  name: String!
+  slug: String!
+  image: String!
+  year_end: String
+  year_start: String
+  games_count: Int!
+  image_background: String!
 }

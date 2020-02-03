@@ -31,7 +31,7 @@ async function init() {
         introspection: true, // Necesario,
         dataSources: ()  => ({
             genres: new dataSources.Genres(),
-            races: new dataSources.Games()
+            games: new dataSources.Games()
         })
     });
 
