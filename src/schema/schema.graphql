@@ -18,6 +18,7 @@ type Query {
     genres: ResultGenres
     game(id: ID!): ResultGame
     games(page: Int = 1): ResultGames
+    platforms: ResultPlatforms
 
 }
 
@@ -56,6 +57,15 @@ type ResultGames implements Result {
     results: [Game!]!
 }
 
+type ResultPlatforms implements Result {
+    status: Boolean!
+    message: String!
+    count: Int!
+    next: String
+    previous: String
+    results: [Platform]
+}
+
 type Genre {
   ## Genre id value
   id: ID!
@@ -92,7 +102,7 @@ type Game {
   reviews_count: Int!
   saturated_color: String
   dominant_color: String
-  platforms: [Platform]
+  platforms: [Platforms]
   genres: [Genre!]!
   ## stores: [StoreData]
   ## clip: Clip
@@ -120,9 +130,19 @@ type Platform {
   id: ID!
   name: String!
   slug: String!
-  image: String!
   year_end: String
   year_start: String
   games_count: Int!
   image_background: String!
+}
+
+type Platforms {
+  platform: Platform!
+  released_at: String!
+  requirements: Requirements
+}
+
+type Requirements {
+  minimum: String
+  maximum: String
 }
