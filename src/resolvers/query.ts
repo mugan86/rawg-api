@@ -10,7 +10,7 @@ const resolvers: IResolvers = {
             try {
                 const genre: GenreItem= await dataSources.genres.getItem(id);
                 return {
-                    status: false,
+                    status: true,
                     message: `Genre with ID ${ id } load successfully`,
                     genre
                 }

@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/mugan86/rawg-api-graphql#readme",
   "engines": {
-    "node": "10.15.3"
+    "node": "12.14.1"
   },
   "dependencies": {
     "apollo-datasource-rest": "^0.6.11",
