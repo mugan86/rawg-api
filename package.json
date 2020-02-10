@@ -34,6 +34,7 @@
     "graphql-import": "^0.7.1",
     "graphql-import-node": "0.0.4",
     "graphql-playground-middleware-express": "^1.7.12",
+    "graphql-tag-pluck": "^0.8.7",
     "graphql-tools": "^4.0.4",
     "http": "0.0.0",
     "ncp": "^2.0.0",
