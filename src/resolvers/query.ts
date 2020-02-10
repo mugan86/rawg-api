@@ -1,7 +1,7 @@
 import { GenresResult, GenreItem } from "./../interfaces/genres.interface";
 import { IResolvers } from "graphql-tools";
 import { GamesResult, GameItem } from "../interfaces/games.interface";
-import { PlatformsResult } from "../interfaces/platforms.interface";
+import { PlatformsResult, PlatformItem } from "../interfaces/platforms.interface";
 
 // Los resolvers de las operaciones de consulta para devolver información
 const resolvers: IResolvers = {
@@ -90,7 +90,7 @@ const resolvers: IResolvers = {
                 const { count, next, previous, results}: PlatformsResult =  await dataSources.platforms.getAll();
                 return  {
                     status: true,
-                    message: "Platforms correct correctly",
+                    message: "Platforms load correctly",
                     count,
                     next,
                     previous,
@@ -106,7 +106,25 @@ const resolvers: IResolvers = {
                     results: [ ]
                 }
             }
-        }
+        },
+        async platform(_: void, { id }, { dataSources}): Promise<PlatformsResult> {
+            try {
+                const platform: PlatformItem = await dataSources.platforms.getItem(id);
+                // console.log(game);
+                return  {
+                    status: true,
+                    message: `Platform with ${ id } correct correctly`,
+                    platform
+                }
+            } catch(error) { 
+                console.log
+                return  {
+                    status: false,
+                    message: "Unexpected error: ".concat(error),
+                    platform: undefined
+                }
+            }
+        },
     }
 };
 

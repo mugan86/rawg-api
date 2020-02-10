@@ -1,13 +1,14 @@
 export interface PlatformsResult {
     status: boolean;
     message: string;
-    count: number;
+    count?: number;
     next?: string;
     previous?: string;
-    results?: Platform[];
+    results?: PlatformItem[];
+    platform?: PlatformItem
   }
   
-export interface Platform {
+export interface PlatformItem {
     id: number;
     name: string;
     slug: string;

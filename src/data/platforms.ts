@@ -1,5 +1,5 @@
 import { RAWG } from "./rawg";
-import { PlatformsResult } from "../interfaces/platforms.interface";
+import { PlatformsResult, PlatformItem } from "../interfaces/platforms.interface";
 
 export class Platforms extends RAWG {
     constructor() {
@@ -12,8 +12,8 @@ export class Platforms extends RAWG {
         });
     }
 
-    async getItem(id: string): Promise<PlatformsResult> {
-        return await this.get(`platform/${ id }`, {
+    async getItem(id: string): Promise<PlatformItem> {
+        return await this.get(`platforms/${ id }`, {
             cacheOptions: { ttl: 60 }
         })
     }
