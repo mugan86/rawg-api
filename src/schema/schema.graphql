@@ -17,7 +17,7 @@ type Query {
     """ 
     genres: ResultGenres
     game(id: ID!): ResultGame
-    games(page: Int = 1): ResultGames
+    games(page: Int = 1, itemsPage: Int = 20): ResultGames
     platforms: ResultPlatforms
     platform(id: ID!): ResultPlatform
 }
@@ -87,6 +87,13 @@ type Genre {
   following: Boolean
 }
 
+type RatingInfo {
+  value: Float!
+  top: Float!
+  count: Int!
+  info: String!
+}
+
 type Game {
   id: ID!
   slug: String!
@@ -94,11 +101,9 @@ type Game {
   added: Int
   released: String
   tba: Boolean
-  background_image: String
-  rating: Float!
-  rating_top: Float!
+  img: String
+  rating: RatingInfo
   ratings: [Rating]
-  ratings_count: Float!
   reviews_text_count: Int!
   added_by_status: AddedByStatus
   metacritic: Float!

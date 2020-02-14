@@ -6,8 +6,8 @@ export class Games extends RAWG {
         super()
     }
 
-    async getAll(page: number = 1): Promise<GamesResult> {
-        return await this.get(`games?page=${page}`, {
+    async getAll(page: number = 1, itemsPerPage: number = 20): Promise<GamesResult> {
+        return await this.get(`games?page=${page}&page_size=${itemsPerPage}`, {
             cacheOptions: { ttl: 60 }
         });
     }
