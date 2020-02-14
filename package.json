@@ -8,7 +8,7 @@
     "build": "tsc -p . && ncp src/schema build/schema",
     "dev": "npm run build:dev",
     "build:dev": "nodemon \"src/server.ts\" --exec \"ts-node\" src/server.ts -e ts,graphql,json",
-    "publish": "now --prod"
+    "publish": "npm run build && now --prod"
   },
   "repository": {
     "type": "git",

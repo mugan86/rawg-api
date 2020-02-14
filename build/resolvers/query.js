@@ -55,10 +55,10 @@ const resolvers = {
                 }
             });
         },
-        games(_, { page }, { dataSources }) {
+        games(_, { page, itemsPage }, { dataSources }) {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
-                    const { count, next, previous, results } = yield dataSources.games.getAll(page);
+                    const { count, next, previous, results } = yield dataSources.games.getAll(page, itemsPage);
                     return {
                         status: true,
                         message: "Games correct correctly",

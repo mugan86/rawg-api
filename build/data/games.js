@@ -14,9 +14,9 @@ class Games extends rawg_1.RAWG {
     constructor() {
         super();
     }
-    getAll(page = 1) {
+    getAll(page = 1, itemsPerPage = 20) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.get(`games?page=${page}`, {
+            return yield this.get(`games?page=${page}&page_size=${itemsPerPage}`, {
                 cacheOptions: { ttl: 60 }
             });
         });
