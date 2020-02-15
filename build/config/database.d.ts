@@ -1,5 +1,4 @@
-import MongoClient from "mongodb";
 declare class Database {
-    init(): Promise<MongoClient.Db>;
+    init(): Promise<any>;
 }
 export default Database;
