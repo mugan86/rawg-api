@@ -18,7 +18,7 @@ type Query {
     genres: ResultGenres
     game(id: ID!): ResultGame
     games(page: Int = 1, itemsPage: Int = 20): ResultGames
-    platforms: ResultPlatforms
+    platforms(save: Boolean = false): ResultPlatforms
     platform(id: ID!): ResultPlatform
 }
 
@@ -141,10 +141,13 @@ type Platform {
   id: ID!
   name: String!
   slug: String!
-  year_end: String
-  year_start: String
-  games_count: Int!
-  image_background: String!
+  gamesTotal: Int
+  img: String
+}
+
+type Year {
+  start: String
+  end: String
 }
 
 type Platforms {

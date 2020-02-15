@@ -21,6 +21,7 @@ const http_1 = require("http");
 const environments_1 = __importDefault(require("./config/environments"));
 const graphql_playground_middleware_express_1 = __importDefault(require("graphql-playground-middleware-express"));
 const data_1 = require("./data");
+const database_1 = __importDefault(require("./config/database"));
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
         if (process.env.NODE_ENV !== "production") {
@@ -30,8 +31,11 @@ function init() {
         const app = express_1.default();
         app.use("*", cors_1.default());
         app.use(compression_1.default());
+        const database = new database_1.default();
+        const db = yield database.init();
         const server = new apollo_server_express_1.ApolloServer({
             schema: schema_1.default,
+            context: { db },
             introspection: true,
             dataSources: () => ({
                 genres: new data_1.dataSources.Genres(),

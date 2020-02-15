@@ -15,6 +15,10 @@ const resolversTypes = {
             };
         },
         img: parent => parent.background_image
+    },
+    Platform: {
+        img: parent => parent.image_background,
+        gamesTotal: parent => parent.games_count
     }
 };
 exports.default = resolversTypes;
