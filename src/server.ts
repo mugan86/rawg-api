@@ -8,7 +8,7 @@ import { createServer } from "http";
 import environments from "./config/environments";
 import expressPlayGround from "graphql-playground-middleware-express";
 import { dataSources } from "./data";
-
+import Database from "./config/database";
 async function init() {
     // Inicializar variables de entorno
     if (process.env.NODE_ENV !== "production") {
@@ -25,9 +25,13 @@ async function init() {
 
     app.use(compression());
 
+    const database = new Database();
+    const db = await database.init();
+
     // Inicializamos el servidor de Apollo
     const server = new ApolloServer({
         schema: schema,
+        context: { db },
         introspection: true, // Necesario,
         dataSources: ()  => ({
             genres: new dataSources.Genres(),

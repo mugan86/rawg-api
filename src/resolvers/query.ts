@@ -85,9 +85,19 @@ const resolvers: IResolvers = {
                 }
             }
         },
-        async platforms(_: void, __, {dataSources}): Promise<PlatformsResult> {
+        async platforms(_: void, { save }, {dataSources, db }): Promise<PlatformsResult> {
             try {
                 const { count, next, previous, results}: PlatformsResult =  await dataSources.platforms.getAll();
+                if (save) {
+                    await db.collection("platforms").insertMany(results)
+                        .then(() => {
+                            console.log("Platforms load OK")
+                        })
+                        .catch(() => {
+                            console.log("Unexpected error")
+                        });
+                }
+                
                 return  {
                     status: true,
                     message: "Platforms load correctly",

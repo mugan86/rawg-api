@@ -16,6 +16,10 @@ const resolversTypes: IResolvers = {
             }
         },
         img: parent => parent.background_image
+    },
+    Platform: {
+        img: parent => parent.image_background,
+        gamesTotal: parent => parent.games_count
     }
 };
 
