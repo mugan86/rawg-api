@@ -100,19 +100,10 @@ const resolvers = {
                 }
             });
         },
-        platforms(_, { save }, { dataSources, db }) {
+        platforms(_, __, { dataSources }) {
             return __awaiter(this, void 0, void 0, function* () {
                 try {
                     const { count, next, previous, results } = yield dataSources.platforms.getAll();
-                    if (save) {
-                        yield db.collection("platforms").insertMany(results)
-                            .then(() => {
-                            console.log("Platforms load OK");
-                        })
-                            .catch(() => {
-                            console.log("Unexpected error");
-                        });
-                    }
                     return {
                         status: true,
                         message: "Platforms load correctly",
