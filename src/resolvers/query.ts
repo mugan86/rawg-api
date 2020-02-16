@@ -1,3 +1,4 @@
+import { TagsResult } from "./../interfaces/tags.interface";
 import { GenresResult, GenreItem } from "./../interfaces/genres.interface";
 import { IResolvers } from "graphql-tools";
 import { GamesResult, GameItem } from "../interfaces/games.interface";
@@ -123,6 +124,47 @@ const resolvers: IResolvers = {
                     status: false,
                     message: "Unexpected error: ".concat(error),
                     platform: undefined
+                }
+            }
+        },
+        async tags(_: void, { page, itemsPage} , {dataSources }): Promise<TagsResult> {
+            try {
+                const { count, next, previous, results}: PlatformsResult =  await dataSources.tags.getAll(page, itemsPage);
+
+                return  {
+                    status: true,
+                    message: "Tags load correctly",
+                    count,
+                    next,
+                    previous,
+                    results
+                }
+            } catch(error) { 
+                return  {
+                    status: false,
+                    message: "Unexpected error: ".concat(error),
+                    count: -1,
+                    next: undefined,
+                    previous: undefined,
+                    results: [ ]
+                }
+            }
+        },
+        async tag(_: void, { id }, { dataSources}): Promise<TagsResult> {
+            try {
+                const tag: PlatformItem = await dataSources.tags.getItem(id);
+                // console.log(game);
+                return  {
+                    status: true,
+                    message: `Tag with ${ id } correct correctly`,
+                    tag
+                }
+            } catch(error) { 
+                console.log
+                return  {
+                    status: false,
+                    message: "Unexpected error: ".concat(error),
+                    tag: undefined
                 }
             }
         },

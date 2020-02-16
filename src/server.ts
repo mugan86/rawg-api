@@ -31,7 +31,8 @@ async function init() {
         dataSources: ()  => ({
             genres: new dataSources.Genres(),
             games: new dataSources.Games(),
-            platforms: new dataSources.Platforms()
+            platforms: new dataSources.Platforms(),
+            tags: new dataSources.Tags()
         })
     });
 

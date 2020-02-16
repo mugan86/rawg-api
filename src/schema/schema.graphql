@@ -20,6 +20,8 @@ type Query {
     games(page: Int = 1, itemsPage: Int = 20): ResultGames
     platforms(save: Boolean = false): ResultPlatforms
     platform(id: ID!): ResultPlatform
+    tags(page: Int = 1, itemsPage: Int = 20): ResultTags
+    tag(id: ID!): ResultTag
 }
 
 interface Result {
@@ -31,6 +33,12 @@ type ResultGame implements Result {
   status: Boolean!
   message: String!
   game: Game
+}
+
+type ResultTag implements Result {
+  status: Boolean!
+  message: String!
+  tag: Tag
 }
 
 type ResultGenre implements Result {
@@ -57,6 +65,15 @@ type ResultGames implements Result {
   results: [Game!]!
 }
 
+type ResultTags implements Result {
+  status: Boolean!
+  message: String!
+  count: Int!
+  next: String
+  previous: String
+  results: [Tag!]!
+}
+
 type ResultPlatforms implements Result {
   status: Boolean!
   message: String!
@@ -70,6 +87,12 @@ type ResultPlatform implements Result {
   status: Boolean!
   message: String!
   platform: Platform
+}
+
+type Tag {
+  id: ID!
+  slug: String!
+  name: String!
 }
 
 type Genre {
@@ -115,6 +138,7 @@ type Game {
   dominant_color: String
   platforms: [Platforms]
   genres: [Genre!]!
+  description: String
   ## stores: [StoreData]
   ## clip: Clip
   ## tags: Tag[]
