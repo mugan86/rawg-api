@@ -36,7 +36,8 @@ function init() {
             dataSources: () => ({
                 genres: new data_1.dataSources.Genres(),
                 games: new data_1.dataSources.Games(),
-                platforms: new data_1.dataSources.Platforms()
+                platforms: new data_1.dataSources.Platforms(),
+                tags: new data_1.dataSources.Tags()
             })
         });
         server.applyMiddleware({ app });

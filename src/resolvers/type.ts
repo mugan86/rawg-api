@@ -20,7 +20,21 @@ const resolversTypes: IResolvers = {
     Platform: {
         img: parent => parent.image_background,
         gamesTotal: parent => parent.games_count
+    },
+    ResultTags: {
+        totalPages: (parent) => calculateTotalPages(parent.count, parent.itemsPage)
+    },
+    ResultGames: {
+        totalPages: (parent) => calculateTotalPages(parent.count, parent.itemsPage)
     }
 };
+
+function calculateTotalPages(countTotal: number, itemsPage: number) {
+    let pagesCount = (countTotal) / itemsPage;
+        if (pagesCount % itemsPage > 0) {
+            pagesCount= Math.ceil(pagesCount);
+        }
+        return pagesCount;
+}
 
 export default resolversTypes;

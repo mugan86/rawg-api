@@ -53,6 +53,8 @@ const resolvers: IResolvers = {
                     status: true,
                     message: "Games correct correctly",
                     count,
+                    page,
+                    itemsPage,
                     next,
                     previous,
                     results
@@ -129,12 +131,14 @@ const resolvers: IResolvers = {
         },
         async tags(_: void, { page, itemsPage} , {dataSources }): Promise<TagsResult> {
             try {
-                const { count, next, previous, results}: PlatformsResult =  await dataSources.tags.getAll(page, itemsPage);
+                const { count, next, previous, results }: TagsResult =  await dataSources.tags.getAll(page, itemsPage);
 
                 return  {
                     status: true,
                     message: "Tags load correctly",
                     count,
+                    page,
+                    itemsPage,
                     next,
                     previous,
                     results

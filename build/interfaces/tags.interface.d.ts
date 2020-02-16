@@ -4,13 +4,9 @@ export interface TagsResult {
     count?: number;
     next?: string;
     previous?: string;
-    page?: number;
-    itemsPage?: number;
-    totalPages?: number;
     results?: TagItem[];
-    tag?: TagItem
-  }
-  
+    tag?: TagItem;
+}
 export interface TagItem {
     id: number;
     name: string;
