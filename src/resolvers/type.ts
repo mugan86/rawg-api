@@ -15,19 +15,48 @@ const resolversTypes: IResolvers = {
                 .concat(String(parent.ratings_count)).concat(")")
             }
         },
-        img: parent => parent.background_image
+        img: parent => parent.background_image,
+        platformsIds: parent => {
+            const ids = [];
+            const platforms = parent.platforms;
+            for (let i = 0; i < parent.platforms.length; i++) {
+                ids.push(platforms[i].platform.id);
+            }
+            return ids;
+        },
+        tagsIds: parent => {
+            const ids = [];
+            const tags = parent.tags;
+            for (let i = 0; i < parent.tags.length; i++) {
+                ids.push(tags[i].id);
+            }
+            return ids;
+        },
+    },
+    Tag: {
+        img: parent => parent.image_background,
     },
     Platform: {
         img: parent => parent.image_background,
         gamesTotal: parent => parent.games_count
     },
     ResultTags: {
-        totalPages: (parent) => calculateTotalPages(parent.count, parent.itemsPage)
+        itemsPage: (parent) => pageItemsCountCheck(parent.itemsPage),
+        totalPages: (parent) => calculateTotalPages(parent.count, pageItemsCountCheck(parent.itemsPage))
     },
     ResultGames: {
-        totalPages: (parent) => calculateTotalPages(parent.count, parent.itemsPage)
+        itemsPage: (parent) => pageItemsCountCheck(parent.itemsPage),
+        totalPages: (parent) => calculateTotalPages(parent.count, pageItemsCountCheck(parent.itemsPage))
+    },
+    Clips: {
+        low: (parent) => parent["320"],
+        medium: (parent) => parent["640"]
     }
 };
+
+function pageItemsCountCheck(itemsPage: number) {
+    return (itemsPage > 40) ? 40: itemsPage;
+}
 
 function calculateTotalPages(countTotal: number, itemsPage: number) {
     let pagesCount = (countTotal) / itemsPage;

@@ -1,4 +1,5 @@
 import { GenreItem } from "./genres.interface";
+import { TagItem } from "./tags.interface";
 export interface GameItem {
     id: number;
     slug: string;
@@ -24,7 +25,7 @@ export interface GameItem {
     genres: GenreItem[];
     stores: StoreData[];
     clip: Clip;
-    tags: Tag[];
+    tags: TagItem[];
     short_screenshots: Shortscreenshot[];
 }
 interface Shortscreenshot {
@@ -37,16 +38,11 @@ export interface GamesResult {
     count?: number;
     next?: number;
     previous?: string | undefined;
+    page?: number;
+    itemsPage?: number;
+    totalPages?: number;
     results?: GameItem[];
     game?: GameItem;
-}
-interface Tag {
-    id: number;
-    name: string;
-    slug: string;
-    language: string;
-    games_count: number;
-    image_background: string;
 }
 interface Clip {
     clip: string;

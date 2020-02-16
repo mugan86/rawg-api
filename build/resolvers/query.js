@@ -63,6 +63,8 @@ const resolvers = {
                         status: true,
                         message: "Games correct correctly",
                         count,
+                        page,
+                        itemsPage,
                         next,
                         previous,
                         results
@@ -153,6 +155,8 @@ const resolvers = {
                         status: true,
                         message: "Tags load correctly",
                         count,
+                        page,
+                        itemsPage,
                         next,
                         previous,
                         results

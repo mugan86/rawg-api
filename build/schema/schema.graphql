@@ -59,7 +59,10 @@ type ResultGenres implements Result {
 type ResultGames implements Result {
   status: Boolean!
   message: String!
+  page: Int!
+  itemsPage: Int!
   count: Int!
+  totalPages: Int!
   next: String
   previous: String
   results: [Game!]!
@@ -68,8 +71,11 @@ type ResultGames implements Result {
 type ResultTags implements Result {
   status: Boolean!
   message: String!
+  page: Int!
+  itemsPage: Int!
   count: Int!
   next: String
+  totalPages: Int!
   previous: String
   results: [Tag!]!
 }

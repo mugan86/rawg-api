@@ -95,12 +95,6 @@ type ResultPlatform implements Result {
   platform: Platform
 }
 
-type Tag {
-  id: ID!
-  slug: String!
-  name: String!
-}
-
 type Genre {
   ## Genre id value
   id: ID!
@@ -143,12 +137,34 @@ type Game {
   saturated_color: String
   dominant_color: String
   platforms: [Platforms]
+  platformsIds: [ID!]!
   genres: [Genre!]!
   description: String
   ## stores: [StoreData]
-  ## clip: Clip
-  ## tags: Tag[]
+  clip: Clip
+  tags: [Tag]
+  tagsIds: [ID!]!
   ## short_screenshots: ShortScreenshot[]
+}
+
+type Tag {
+  id: ID!
+  name: String!
+  slug: String!
+  img: String!
+}
+
+type Clip {
+  clip: String!
+  clips: Clips!
+  video: String!
+  preview: String!
+}
+
+type Clips {
+  low: String!
+  medium: String!
+  full: String!
 }
 
 type Rating {

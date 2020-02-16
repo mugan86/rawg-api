@@ -32,9 +32,9 @@ export interface GameItem {
 
 
 interface Shortscreenshot {
-    id: number;
-    image: string;
-  }
+  id: number;
+  image: string;
+}
 
 export interface GamesResult {
     status: boolean;
@@ -99,9 +99,9 @@ export interface GamesResult {
     playing: number;
   }
   
-  interface Rating {
-    id: number;
-    title: string;
-    count: number;
-    percent: number;
-  }
+interface Rating {
+  id: number;
+  title: string;
+  count: number;
+  percent: number;
+}
