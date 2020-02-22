@@ -1,0 +1,14 @@
+type Rating {
+  id: ID!
+  title: String!
+  count: Int!
+  percent: Float!
+}
+
+type RatingInfo {
+  value: Float!
+  top: Float!
+  count: Int!
+  info: String!
+}
+

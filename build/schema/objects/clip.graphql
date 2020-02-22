@@ -1,0 +1,12 @@
+type Clip {
+  clip: String!
+  clips: Clips!
+  video: String!
+  preview: String!
+}
+
+type Clips {
+  low: String!
+  medium: String!
+  full: String!
+}

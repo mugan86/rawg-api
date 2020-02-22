@@ -1,0 +1,18 @@
+type AddedByStatus {
+    yet: Int!
+    owned: Int!
+    beaten: Int!
+    toplay: Int!
+    dropped: Int!
+    playing: Int!
+}
+
+type Year {
+  start: String
+  end: String
+}
+
+type Requirements {
+  minimum: String
+  maximum: String
+}

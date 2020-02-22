@@ -1,0 +1,25 @@
+type Query {
+    """
+    Get details of the genre
+    -------------------------------
+    More info in ["Video Games select genre details"](https://api.rawg.io/docs/#operation/genres_list)
+    """ 
+    genre(
+      """ 
+      A unique integer value identifying this Genre. For example,
+      pass "3" id to take 'Adventure' genre details
+      """
+      id: String!): ResultGenre
+    """
+    Get a list of video game genres
+    -------------------------------
+    More info in ["Video Games genres List"](https://api.rawg.io/docs/#operation/genres_list)
+    """ 
+    genres: ResultGenres
+    game(id: ID!): ResultGame
+    games(page: Int = 1, itemsPage: Int = 20): ResultGames
+    platforms(save: Boolean = false): ResultPlatforms
+    platform(id: ID!): ResultPlatform
+    tags(page: Int = 1, itemsPage: Int = 20): ResultTags
+    tag(id: ID!): ResultTag
+}

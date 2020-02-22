@@ -4,12 +4,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("graphql-import-node");
-const schema_graphql_1 = __importDefault(require("./schema.graphql"));
 const graphql_tools_1 = require("graphql-tools");
-const resolverMap_1 = __importDefault(require("../resolvers/resolverMap"));
+const resolvers_1 = __importDefault(require("../resolvers"));
+const merge_graphql_schemas_1 = require("merge-graphql-schemas");
+const typeDefs = merge_graphql_schemas_1.mergeTypes(merge_graphql_schemas_1.fileLoader(`${__dirname}/**/*.graphql`), { all: true });
 const schema = graphql_tools_1.makeExecutableSchema({
-    typeDefs: schema_graphql_1.default,
-    resolvers: resolverMap_1.default,
+    typeDefs,
+    resolvers: resolvers_1.default,
     resolverValidationOptions: {
         requireResolversForResolveType: false
     }
