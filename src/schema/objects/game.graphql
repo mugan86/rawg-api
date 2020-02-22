@@ -1,0 +1,29 @@
+type Game {
+  id: ID!
+  slug: String!
+  name: String!
+  added: Int
+  released: String
+  tba: Boolean
+  img: String
+  rating: RatingInfo
+  ratings: [Rating]
+  reviews_text_count: Int!
+  added_by_status: AddedByStatus
+  metacritic: Float!
+  playtime: Int!
+  suggestions_count: Int!
+  user_game: String
+  reviews_count: Int!
+  saturated_color: String
+  dominant_color: String
+  platforms: [Platforms]
+  platformsIds: [ID!]!
+  genres: [Genre!]!
+  description: String
+  ## stores: [StoreData]
+  clip: Clip
+  tags: [Tag]
+  tagsIds: [ID!]!
+  ## short_screenshots: ShortScreenshot[]
+}

@@ -1,0 +1,18 @@
+# import Result from './../../interfaces.result.graphql'
+type ResultTag implements Result {
+  status: Boolean!
+  message: String!
+  tag: Tag
+}
+
+type ResultTags implements Result {
+  status: Boolean!
+  message: String!
+  page: Int!
+  itemsPage: Int!
+  count: Int!
+  next: String
+  totalPages: Int!
+  previous: String
+  results: [Tag!]!
+}

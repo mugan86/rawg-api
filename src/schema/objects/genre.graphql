@@ -1,0 +1,14 @@
+type Genre {
+  ## Genre id value
+  id: ID!
+  ## Genre name 
+  name: String!
+  ## Genre slug value. Same name but in lowercase
+  slug: String!
+  ## Number games correspoding to select genre  
+  games_count: Int!
+  image_background: String!
+  ## Most populars first games
+  games: [Game!]!
+  following: Boolean
+}
