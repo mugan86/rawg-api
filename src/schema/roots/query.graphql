@@ -17,7 +17,9 @@ type Query {
     """ 
     genres: ResultGenres
     game(id: ID!): ResultGame
+    "Añadir filtros aquí"
     games(page: Int = 1, itemsPage: Int = 20): ResultGames
+    gamesBetweenDates(start: String, finish: String, page: Int = 1, itemsPage: Int = 20): ResultGames
     platforms(save: Boolean = false): ResultPlatforms
     platform(id: ID!): ResultPlatform
     tags(page: Int = 1, itemsPage: Int = 20): ResultTags

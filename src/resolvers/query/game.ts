@@ -1,11 +1,23 @@
 import { IResolvers } from "graphql-tools";
 import { GamesResult, GameItem } from "../../interfaces/games.interface";
 
+async function gamesLitsResult(page: number, itemsPage: number, values: any) {
+    return  {
+        status: true,
+        message: "Games correct correctly",
+        count: values.count,
+        page,
+        itemsPage,
+        next: values.next,
+        previous: values.previous,
+        results: values.results
+    };
+}
 const resolversGame: IResolvers = {
     Query: {
         async games(_: void, { page, itemsPage } , { dataSources}): Promise<GamesResult> {
             try {
-                const { count, next, previous, results}: GamesResult= await dataSources.games.getAll(page, itemsPage);
+                const { count, next, previous, results}: GamesResult= await dataSources.games.getDataBetweensGames(page, itemsPage);
                 return  {
                     status: true,
                     message: "Games correct correctly",
@@ -15,7 +27,7 @@ const resolversGame: IResolvers = {
                     next,
                     previous,
                     results
-                }
+                };
             } catch(error) { 
                 return  {
                     status: false,
@@ -24,7 +36,7 @@ const resolversGame: IResolvers = {
                     next: undefined,
                     previous: undefined,
                     results: [ ]
-                }
+                };
             }
         },
         async game(_: void, { id }, { dataSources}): Promise<GamesResult> {
@@ -35,16 +47,40 @@ const resolversGame: IResolvers = {
                     status: true,
                     message: `Games with ${ id } correct correctly`,
                     game
-                }
+                };
             } catch(error) { 
-                console.log
+                console.log;
                 return  {
                     status: false,
                     message: "Unexpected error: ".concat(error),
                     game: undefined
-                }
+                };
             }
-        }
+        },
+        async gamesBetweenDates(_: void, { start, finish, page, itemsPage } , { dataSources}): Promise<GamesResult> {
+            try {
+                const { count, next, previous, results}: GamesResult= await dataSources.games.getDataBetweensGames(start, finish, page, itemsPage);
+                return  {
+                    status: true,
+                    message: "Games correct correctly",
+                    count,
+                    page,
+                    itemsPage,
+                    next,
+                    previous,
+                    results
+                };
+            } catch(error) { 
+                return  {
+                    status: false,
+                    message: "Unexpected error: ".concat(error),
+                    count: -1,
+                    next: undefined,
+                    previous: undefined,
+                    results: [ ]
+                };
+            }
+        },
     }
 };
 

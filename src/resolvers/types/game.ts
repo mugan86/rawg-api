@@ -13,7 +13,7 @@ const resolversTypesGames: IResolvers = {
                 count: parent.ratings_count,
                 info: String(parent.rating).concat("/").concat(String(parent.rating_top)).concat(" (")
                 .concat(String(parent.ratings_count)).concat(")")
-            }
+            };
         },
         img: parent => parent.background_image,
         platformsIds: parent => {

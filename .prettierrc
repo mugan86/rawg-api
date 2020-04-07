@@ -1,0 +1,8 @@
+{
+    "singleQuote": false,
+    "vetur.format.defaultFormatterOptions": {
+        "prettier": {
+            "singleQuote": false
+        }
+    }
+}

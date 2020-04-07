@@ -1,7 +1,8 @@
 {
     "rules": {
-        "no-any": true,
+        "no-any": false,
         "curly": true,
-        "quotemark": [true, "double"]
+        "quotemark": [true, "double"],
+        "semicolon": true
     }
 }
