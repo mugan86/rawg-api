@@ -28,13 +28,14 @@ const resolversTypesGames: IResolvers = {
             return elementIds(parent.tags);
         },
         genresIds: parent => {
-            /*const ids = [];
-            const tags = parent.tags;
-            for (let i = 0; i < parent.tags.length; i++) {
-                ids.push(tags[i].id);
-            }
-            return ids;*/
             return elementIds(parent.genres);
+        },
+        shortScreenshots: parent => {
+            const screens: Array<string> = [];
+            parent.short_screenshots.map( (screen: any) => {
+                screens.push(screen.image);
+            });
+            return screens;
         }
     }
 };

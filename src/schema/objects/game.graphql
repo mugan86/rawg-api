@@ -26,5 +26,5 @@ type Game {
   clip: Clip
   tags: [Tag]
   tagsIds: [ID!]!
-  ## short_screenshots: ShortScreenshot[]
+  shortScreenshots: [String]
 }
