@@ -1,23 +1,11 @@
 import { IResolvers } from "graphql-tools";
 import { GamesResult, GameItem } from "../../interfaces/games.interface";
 
-async function gamesLitsResult(page: number, itemsPage: number, values: any) {
-    return  {
-        status: true,
-        message: "Games correct correctly",
-        count: values.count,
-        page,
-        itemsPage,
-        next: values.next,
-        previous: values.previous,
-        results: values.results
-    };
-}
 const resolversGame: IResolvers = {
     Query: {
         async games(_: void, { page, itemsPage } , { dataSources}): Promise<GamesResult> {
             try {
-                const { count, next, previous, results}: GamesResult= await dataSources.games.getDataBetweensGames(page, itemsPage);
+                const { count, next, previous, results}: GamesResult= await dataSources.games.getAll(page, itemsPage);
                 return  {
                     status: true,
                     message: "Games correct correctly",

@@ -25,14 +25,26 @@ const resolversTypesGames: IResolvers = {
             return ids;
         },
         tagsIds: parent => {
-            const ids = [];
+            return elementIds(parent.tags);
+        },
+        genresIds: parent => {
+            /*const ids = [];
             const tags = parent.tags;
             for (let i = 0; i < parent.tags.length; i++) {
                 ids.push(tags[i].id);
             }
-            return ids;
-        },
+            return ids;*/
+            return elementIds(parent.genres);
+        }
     }
 };
+
+function elementIds(objects: any) {
+    const ids = [];
+    for (let i = 0; i < objects.length; i++) {
+        ids.push(objects[i].id);
+    }
+    return ids;
+}
 
 export default resolversTypesGames;
