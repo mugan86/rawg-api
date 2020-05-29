@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dataSources = void 0;
 const tags_1 = require("./tags");
 const genres_1 = require("./genres");
 const games_1 = require("./games");

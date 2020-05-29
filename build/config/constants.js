@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PLATFORMS = void 0;
 var PLATFORMS;
 (function (PLATFORMS) {
     PLATFORMS["SONYPS"] = "18,16,15,27";
