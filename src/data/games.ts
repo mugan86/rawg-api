@@ -19,7 +19,7 @@ export class Games extends RAWG {
     }
 
     async getDataBetweensGames(start: string, finish: string, page: number = 1, itemsPerPage: number = 20) {
-        return await this.get(`games?page=${page}&page_size=${itemsPerPage}&dates=${ start },${finish}&platforms=18,16,15,27`, {
+        return await this.get(`games?page=${page}&page_size=${itemsPerPage}&dates=${ start },${finish}`, {
             cacheOptions: { ttl: 60 }
         });
     }

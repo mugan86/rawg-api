@@ -1,31 +1,24 @@
-# rawg-api-graphql
+# API Rawg VideoGames Database
 
-Introduce el contenido de tu README
+### Games
+* List games
+* Details select game
+* Games between dates
 
-Dentro de tsconfig.json en **compilerOptions**
+### Genres
+* List genres
+* Details select genre
 
-```
-"plugins": [
-    {
-    "name": "typescript-tslint-plugin"
-    }
-],
-```
+### Platforms
+* List platforms
+* Details select platform
 
-Instalar **typescript-tslint-plugin**
+### Tags
+* List tags
+* Details select tag
 
-```
-npm install -D typescript-tslint-plugin
-```
+### Pending TODO
 
-Crear el fichero tslint.json con unas normas básicas
+* Add testing
+* Add more [endpoints sources](https://api.rawg.io/docs/) (stores, developers,...)
 
-```
-{
-    "rules": {
-        "no-any": true, // No permitir que se use any
-        "curly": true,  // necesario cerrar con llaves if / else / for / do / while
-        "quotemark": [true, "double"] // Dobles comillas
-    }
-}
-```
