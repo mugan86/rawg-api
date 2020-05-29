@@ -4,5 +4,5 @@ export declare class Games extends RAWG {
     constructor();
     getAll(page?: number, itemsPerPage?: number): Promise<GamesResult>;
     getItem(id: string): Promise<GamesResult>;
-    getDataBetweensGames(): Promise<void>;
+    getDataBetweensGames(start: string, finish: string, page?: number, itemsPerPage?: number): Promise<any>;
 }

@@ -24,13 +24,25 @@ const resolversTypesGames = {
             return ids;
         },
         tagsIds: parent => {
-            const ids = [];
-            const tags = parent.tags;
-            for (let i = 0; i < parent.tags.length; i++) {
-                ids.push(tags[i].id);
-            }
-            return ids;
+            return elementIds(parent.tags);
         },
+        genresIds: parent => {
+            return elementIds(parent.genres);
+        },
+        shortScreenshots: parent => {
+            const screens = [];
+            parent.short_screenshots.map((screen) => {
+                screens.push(screen.image);
+            });
+            return screens;
+        }
     }
 };
+function elementIds(objects) {
+    const ids = [];
+    for (let i = 0; i < objects.length; i++) {
+        ids.push(objects[i].id);
+    }
+    return ids;
+}
 exports.default = resolversTypesGames;

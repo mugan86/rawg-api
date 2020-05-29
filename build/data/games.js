@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Games = void 0;
 const rawg_1 = require("./rawg");
 class Games extends rawg_1.RAWG {
     constructor() {
@@ -28,8 +29,11 @@ class Games extends rawg_1.RAWG {
             });
         });
     }
-    getDataBetweensGames() {
+    getDataBetweensGames(start, finish, page = 1, itemsPerPage = 20) {
         return __awaiter(this, void 0, void 0, function* () {
+            return yield this.get(`games?page=${page}&page_size=${itemsPerPage}&dates=${start},${finish}`, {
+                cacheOptions: { ttl: 60 }
+            });
         });
     }
 }

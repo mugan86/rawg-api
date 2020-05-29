@@ -57,7 +57,34 @@ const resolversGame = {
                     };
                 }
             });
-        }
+        },
+        gamesBetweenDates(_, { start, finish, page, itemsPage }, { dataSources }) {
+            return __awaiter(this, void 0, void 0, function* () {
+                try {
+                    const { count, next, previous, results } = yield dataSources.games.getDataBetweensGames(start, finish, page, itemsPage);
+                    return {
+                        status: true,
+                        message: "Games correct correctly",
+                        count,
+                        page,
+                        itemsPage,
+                        next,
+                        previous,
+                        results
+                    };
+                }
+                catch (error) {
+                    return {
+                        status: false,
+                        message: "Unexpected error: ".concat(error),
+                        count: -1,
+                        next: undefined,
+                        previous: undefined,
+                        results: []
+                    };
+                }
+            });
+        },
     }
 };
 exports.default = resolversGame;

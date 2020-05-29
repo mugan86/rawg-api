@@ -6,8 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("graphql-import-node");
 const graphql_tools_1 = require("graphql-tools");
 const resolvers_1 = __importDefault(require("../resolvers"));
-const merge_graphql_schemas_1 = require("merge-graphql-schemas");
-const typeDefs = merge_graphql_schemas_1.mergeTypes(merge_graphql_schemas_1.fileLoader(`${__dirname}/**/*.graphql`), { all: true });
+const load_files_1 = require("@graphql-tools/load-files");
+const merge_1 = require("@graphql-tools/merge");
+const typeDefs = merge_1.mergeTypeDefs(load_files_1.loadFilesSync(`${__dirname}/**/*.graphql`));
 const schema = graphql_tools_1.makeExecutableSchema({
     typeDefs,
     resolvers: resolvers_1.default,

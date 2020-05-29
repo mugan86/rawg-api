@@ -20,10 +20,11 @@ type Game {
   platforms: [Platforms]
   platformsIds: [ID!]!
   genres: [Genre!]!
+  genresIds: [ID!]!
   description: String
   ## stores: [StoreData]
   clip: Clip
   tags: [Tag]
   tagsIds: [ID!]!
-  ## short_screenshots: ShortScreenshot[]
+  shortScreenshots: [String]
 }

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.calculateTotalPages = exports.pageItemsCountCheck = void 0;
 function pageItemsCountCheck(itemsPage) {
     return (itemsPage > 40) ? 40 : itemsPage;
 }

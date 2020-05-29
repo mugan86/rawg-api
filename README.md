@@ -20,5 +20,6 @@
 ### Pending TODO
 
 * Add testing
+* Add Continuos integration (CI)
 * Add more [endpoints sources](https://api.rawg.io/docs/) (stores, developers,...)
 
