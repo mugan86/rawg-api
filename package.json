@@ -1,20 +1,20 @@
 {
   "name": "rawg-api-graphql",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Rawg Video Game database API adapt to GraphQL",
-  "main": "build/server.js",
+  "main": "build/app.js",
   "scripts": {
-    "start": "node build/server.js",
-    "build": "tsc -p . && ncp src/schema build/schema",
-    "dev": "npm run build:dev",
-    "build:dev": "nodemon \"src/server.ts\" --exec \"ts-node\" src/server.ts -e ts,graphql,json",
-    "publish": "git push origin master && npm run build && now --prod"
+    "start": "node build/app.js",
+    "build": "npx tsc -p . && ncp src/schema build/schema",
+    "dev": "nodemon \"src/app.ts\" --exec \"ts-node\" \"src/app.ts\" -e ts,graphql,json",
+    "lint": "npx eslint . --ext .ts",
+    "lint.fix": "npx eslint . --ext .ts --fix"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mugan86/rawg-api-graphql.git"
   },
-  "keywords": [],
+  "keywords": ["videogames", "api", "graphql", "apollo-datasource-rest"],
   "author": "Anartz Mugika Ledo <mugan86@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -22,35 +22,35 @@
   },
   "homepage": "https://github.com/mugan86/rawg-api-graphql#readme",
   "engines": {
-    "node": "12.16.0"
+    "node": "14.18.3"
   },
   "dependencies": {
-    "apollo-datasource-rest": "^0.6.11",
-    "apollo-server-express": "^2.6.1",
+    "@graphql-tools/load-files": "^6.5.3",
+    "@graphql-tools/schema": "^8.3.1",
+    "apollo-server-express": "3.6.1",
+    "apollo-datasource-rest": "^3.5.0",
     "compression": "^1.7.4",
-    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "graphql": "^14.3.1",
-    "graphql-import": "^0.7.1",
+    "graphql": "^15.8.0",
     "graphql-import-node": "0.0.4",
     "graphql-merge-resolvers": "^1.1.12",
     "graphql-playground-middleware-express": "^1.7.12",
     "graphql-tag-pluck": "^0.8.7",
     "graphql-tools": "^4.0.4",
     "http": "0.0.0",
-    "merge-graphql-schemas": "^1.7.6",
     "ncp": "^2.0.0",
-    "typescript": "^3.5.1"
+    "typescript": "^4.5.4"
   },
   "devDependencies": {
     "@types/compression": "0.0.36",
-    "@types/cors": "^2.8.5",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^4.16.1",
     "@types/node": "^12.0.4",
-    "nodemon": "^2.0.1",
-    "ts-node": "^8.5.4",
-    "typescript-tslint-plugin": "^0.5.5"
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.7.0",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0"
   }
 }

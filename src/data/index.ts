@@ -7,4 +7,4 @@ export const dataSources = {
     Genres,
     Platforms,
     Tags
-}
+};

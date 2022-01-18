@@ -1,5 +1,5 @@
 import { GenresResult, GenreItem } from "./../../interfaces/genres.interface";
-import { IResolvers } from "graphql-tools";
+import { IResolvers } from "@graphql-tools/utils";
 
 // Los resolvers de las operaciones de consulta para devolver información
 const resolversGenre: IResolvers = {
@@ -11,13 +11,13 @@ const resolversGenre: IResolvers = {
                     status: true,
                     message: `Genre with ID ${ id } load successfully`,
                     genre
-                }
+                };
             } catch (e) {
                 return {
                     status: false,
-                    message: "Unexpected error: ".concat(e),
+                    message: "Unexpected error: ".concat(String(e)),
                     genre: undefined
-                }
+                };
             }
             
         },
@@ -31,16 +31,16 @@ const resolversGenre: IResolvers = {
                     next,
                     previous,
                     results
-                }
+                };
             } catch(error) { 
                 return  {
                     status: false,
-                    message: "Unexpected error: ".concat(error),
+                    message: "Unexpected error: ".concat(String(error)),
                     count: -1,
                     next: undefined,
                     previous: undefined,
                     results: [ ]
-                }
+                };
             }
         }
     }

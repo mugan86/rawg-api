@@ -1,6 +1,0 @@
-type Tag {
-  id: ID!
-  name: String!
-  slug: String!
-  img: String!
-}

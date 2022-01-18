@@ -1,5 +1,5 @@
 
-import { IResolvers } from "graphql-tools";
+import { IResolvers } from "@graphql-tools/utils";
 import { PlatformsResult, PlatformItem } from "./../../interfaces/platforms.interface";
 
 // Los resolvers de las operaciones de consulta para devolver información
@@ -16,16 +16,16 @@ const resolversPlatform: IResolvers = {
                     next,
                     previous,
                     results
-                }
+                };
             } catch(error) { 
                 return  {
                     status: false,
-                    message: "Unexpected error: ".concat(error),
+                    message: "Unexpected error: ".concat(String(error)),
                     count: -1,
                     next: undefined,
                     previous: undefined,
                     results: [ ]
-                }
+                };
             }
         },
         async platform(_: void, { id }, { dataSources}): Promise<PlatformsResult> {
@@ -36,14 +36,14 @@ const resolversPlatform: IResolvers = {
                     status: true,
                     message: `Platform with ${ id } correct correctly`,
                     platform
-                }
+                };
             } catch(error) { 
-                console.log
+                console.log;
                 return  {
                     status: false,
-                    message: "Unexpected error: ".concat(error),
+                    message: "Unexpected error: ".concat(String(error)),
                     platform: undefined
-                }
+                };
             }
         }
     }

@@ -1,51 +1,80 @@
-// Añadir los imports
-import express from "express";
-import compression from "compression";
-import cors from "cors";
-import schema from "./schema/schema";
 import { ApolloServer } from "apollo-server-express";
-import { createServer } from "http";
-import environments from "./config/environments";
-import expressPlayGround from "graphql-playground-middleware-express";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import compression from "compression";
+import express, { Application } from "express";
+import { GraphQLSchema } from "graphql";
+import { createServer, Server } from "http";
 import { dataSources } from "./data";
-async function init() {
-    // Inicializar variables de entorno
-    if (process.env.NODE_ENV !== "production") {
-        const envs = environments;
-        console.log(envs);
+import environments from "./config/environments";
+
+class GraphQLServer {
+  // Propiedades
+  private app!: Application;
+  private httpServer!: Server;
+  private readonly DEFAULT_PORT = process.env.PORT ? +process.env.PORT : 3028;
+  private schema!: GraphQLSchema;
+  constructor(schema: GraphQLSchema) {
+    if (schema === undefined) {
+      throw new Error(
+        "Necesitamos un schema de GraphQL para trabajar con APIs GraphQL"
+      );
     }
+    this.schema = schema;
+    if (process.env.NODE_ENV !== "production") {
+      const envs = environments;
+      console.log(envs);
+    }
+    this.init();
+  }
 
-    // Inicializamos la aplicación express
+  private init() {
+    this.configExpress();
+    this.configApolloServerExpress();
+    this.configRoutes();
+  }
 
-    const app = express();
+  private configExpress() {
+    this.app = express();
 
-    // Añadimos configuración de Cors y compression
-    app.use("*", cors());
+    this.app.use(compression());
 
-    app.use(compression());
+    this.httpServer = createServer(this.app);
+  }
 
-    // Inicializamos el servidor de Apollo
-    const server = new ApolloServer({
-        schema: schema,
-        introspection: true, // Necesario,
-        dataSources: ()  => ({
-            genres: new dataSources.Genres(),
-            games: new dataSources.Games(),
-            platforms: new dataSources.Platforms(),
-            tags: new dataSources.Tags()
-        })
+  private async configApolloServerExpress() {
+    const apolloServer = new ApolloServer({
+      schema: this.schema,
+      introspection: true,
+      dataSources: () => ({
+        genres: new dataSources.Genres(),
+        games: new dataSources.Games(),
+        platforms: new dataSources.Platforms(),
+        tags: new dataSources.Tags(),
+      }),
+      // Para que podamos tener disponible el playground en producción
+      plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
     });
 
-    server.applyMiddleware({ app });
+    await apolloServer.start();
 
-    app.use("/", expressPlayGround({
-        endpoint: "/graphql"
-    }));
+    apolloServer.applyMiddleware({ app: this.app, cors: true });
+  }
 
-    const PORT = process.env.PORT || 5000;
-    const httpServer = createServer(app);
+  private configRoutes() {
+    this.app.get("/hello", (_, res) => {
+      res.send("Bienvenid@s al primer proyecto");
+    });
 
-    httpServer.listen({ port: PORT }, (): void => console.log(`http://localhost:${PORT}/graphql`));
+    this.app.get("/", (_, res) => {
+      res.redirect("/graphql");
+    });
+  }
+
+  listen(callback: (port: number) => void): void {
+    this.httpServer.listen(+this.DEFAULT_PORT, () => {
+      callback(+this.DEFAULT_PORT);
+    });
+  }
 }
 
-init();
+export default GraphQLServer;
