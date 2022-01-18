@@ -17,6 +17,6 @@ export class Genres extends RAWG {
     async getItem(id: string): Promise<GenreItem> {
         return await this.get(`genres/${ id }`, {
             cacheOptions: { ttl: 60 }
-        })
+        });
     }
 }

@@ -6,7 +6,7 @@ export class Games extends RAWG {
         super();
     }
 
-    async getAll(page: number = 1, itemsPerPage: number = 20): Promise<GamesResult> {
+    async getAll(page = 1, itemsPerPage = 20): Promise<GamesResult> {
         return await this.get(`games?page=${page}&page_size=${itemsPerPage}`, {
             cacheOptions: { ttl: 60 }
         });
@@ -17,10 +17,8 @@ export class Games extends RAWG {
             cacheOptions: { ttl: 60 }
         });
     }
+    // TODO 
+    /* async getDataBetweensGames() {
 
-    async getDataBetweensGames(start: string, finish: string, page: number = 1, itemsPerPage: number = 20) {
-        return await this.get(`games?page=${page}&page_size=${itemsPerPage}&dates=${ start },${finish}`, {
-            cacheOptions: { ttl: 60 }
-        });
-    }
+    }*/
 }
