@@ -97,4 +97,60 @@ describe("Test Schema GraphQL - Query - game.graphql", () => {
           `;
     tester.test(false, query, {});
   });
+  it("'game' - válida", () => {
+    const query = `
+    query getDetails($id: ID!) {
+      game(id: $id) {
+        status
+        message
+        game {
+          id
+          name
+          slug
+          added
+        }
+      }
+    }`;
+    tester.test(true, query, {id: 3498});
+    tester.test(true, query, {id: "3498"});
+  });
+
+  it("'game' - inválida - Sin Query Variables", () => {
+    const query = `
+    query getDetails($id: ID!) {
+      game(id: $id) {
+        status
+        message
+        game {
+          id
+          name
+          slug
+          added
+        }
+      }
+    }`;
+    tester.test(false, query, {});
+  });
+  it("'game' - inválida - Propiedades resultado incorrectos", () => {
+    const query = `
+    query getDetails($id: ID!) {
+      game(id: $id) {
+        status
+        message
+        page
+        itemsPage
+        count
+        totalPages
+        next
+        previous
+        game {
+          id
+          name
+          slug
+          added
+        }
+      }
+    }`;
+    tester.test(false, query, {id: 3498});
+  });
 });
