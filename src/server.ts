@@ -1,5 +1,5 @@
 import { ApolloServer } from "apollo-server-express";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
+import { ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginLandingPageDisabled } from "apollo-server-core";
 import compression from "compression";
 import express, { Application } from "express";
 import { GraphQLSchema } from "graphql";
@@ -52,7 +52,11 @@ class GraphQLServer {
         tags: new dataSources.Tags(),
       }),
       // Para que podamos tener disponible el playground en producción
-      plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+      plugins: [
+        process.env.NODE_ENV === "production"
+          ? ApolloServerPluginLandingPageDisabled()
+          : ApolloServerPluginLandingPageGraphQLPlayground(),
+      ],
     });
 
     await apolloServer.start();

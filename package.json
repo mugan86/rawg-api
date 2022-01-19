@@ -8,13 +8,19 @@
     "build": "npx tsc -p . && ncp src/schema build/schema",
     "dev": "nodemon \"src/app.ts\" --exec \"ts-node\" \"src/app.ts\" -e ts,graphql,json",
     "lint": "npx eslint . --ext .ts",
-    "lint.fix": "npx eslint . --ext .ts --fix"
+    "lint.fix": "npx eslint . --ext .ts --fix",
+    "test": "npx mocha 'test/**/*.js'"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mugan86/rawg-api-graphql.git"
   },
-  "keywords": ["videogames", "api", "graphql", "apollo-datasource-rest"],
+  "keywords": [
+    "videogames",
+    "api",
+    "graphql",
+    "apollo-datasource-rest"
+  ],
   "author": "Anartz Mugika Ledo <mugan86@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -22,13 +28,13 @@
   },
   "homepage": "https://github.com/mugan86/rawg-api-graphql#readme",
   "engines": {
-    "node": "14.18.3"
+    "node": "16.13.1"
   },
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/schema": "^8.3.1",
-    "apollo-server-express": "3.6.1",
     "apollo-datasource-rest": "^3.5.0",
+    "apollo-server-express": "3.6.2",
     "compression": "^1.7.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
@@ -49,7 +55,10 @@
     "@types/node": "^12.0.4",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
+    "chai": "^4.3.4",
+    "easygraphql-tester": "^6.0.1",
     "eslint": "^8.7.0",
+    "mocha": "^9.1.4",
     "nodemon": "^2.0.15",
     "ts-node": "^10.4.0"
   }

@@ -1,0 +1,4 @@
+type Query {
+  platforms(save: Boolean = false): ResultPlatforms
+  platform(id: ID!): ResultPlatform
+}

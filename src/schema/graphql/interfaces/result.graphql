@@ -1,4 +1,4 @@
 interface Result {
-    status: Boolean!
-    message: String!
+  status: Boolean!
+  message: String!
 }

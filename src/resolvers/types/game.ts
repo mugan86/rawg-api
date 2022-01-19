@@ -32,7 +32,7 @@ const resolversTypesGames: IResolvers = {
         },
         shortScreenshots: parent => {
             const screens: Array<string> = [];
-            parent.short_screenshots.map( (screen: any) => {
+            parent.short_screenshots.map( (screen: {image: string}) => {
                 screens.push(screen.image);
             });
             return screens;
@@ -40,12 +40,12 @@ const resolversTypesGames: IResolvers = {
     }
 };
 
-function elementIds(objects: any) {
+const elementIds = (objects: Array<{id: string | number}>) => {
     const ids = [];
     for (let i = 0; i < objects.length; i++) {
         ids.push(objects[i].id);
     }
     return ids;
-}
+};
 
 export default resolversTypesGames;
