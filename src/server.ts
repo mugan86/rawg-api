@@ -30,7 +30,6 @@ class GraphQLServer {
   private init() {
     this.configExpress();
     this.configApolloServerExpress();
-    this.configRoutes();
   }
 
   private configExpress() {
@@ -62,16 +61,6 @@ class GraphQLServer {
     await apolloServer.start();
 
     apolloServer.applyMiddleware({ app: this.app, cors: true });
-  }
-
-  private configRoutes() {
-    this.app.get("/hello", (_, res) => {
-      res.send("Bienvenid@s al primer proyecto");
-    });
-
-    this.app.get("/", (_, res) => {
-      res.redirect("/graphql");
-    });
   }
 
   listen(callback: (port: number) => void): void {
