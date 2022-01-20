@@ -30,6 +30,7 @@ class GraphQLServer {
   private init() {
     this.configExpress();
     this.configApolloServerExpress();
+    this.configRoutes();
   }
 
   private configExpress() {
@@ -52,15 +53,23 @@ class GraphQLServer {
       }),
       // Para que podamos tener disponible el playground en producción
       plugins: [
-        process.env.NODE_ENV === "production"
-          ? ApolloServerPluginLandingPageDisabled()
-          : ApolloServerPluginLandingPageGraphQLPlayground(),
+        ApolloServerPluginLandingPageGraphQLPlayground
       ],
     });
 
     await apolloServer.start();
 
     apolloServer.applyMiddleware({ app: this.app, cors: true });
+  }
+
+  private configRoutes() {
+    this.app.get("/hello", (_, res) => {
+      res.send("Bienvenid@s al primer proyecto");
+    });
+
+    this.app.get("/", (_, res) => {
+      res.redirect("/graphql");
+    });
   }
 
   listen(callback: (port: number) => void): void {
