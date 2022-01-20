@@ -1,5 +1,6 @@
 
 import { IResolvers } from "@graphql-tools/utils";
+import { ELEMENT_SELECTS } from "../../config/constants";
 import { PlatformsResult, PlatformItem } from "./../../interfaces/platforms.interface";
 
 // Los resolvers de las operaciones de consulta para devolver información
@@ -12,6 +13,7 @@ const resolversPlatform: IResolvers = {
                 return  {
                     status: true,
                     message: "Platforms load correctly",
+                    elementSelect: ELEMENT_SELECTS.PLATFORMS,
                     count,
                     next,
                     previous,
@@ -35,6 +37,7 @@ const resolversPlatform: IResolvers = {
                 return  {
                     status: true,
                     message: `Platform with ${ id } correct correctly`,
+                    elementSelect: ELEMENT_SELECTS.PLATFORM,
                     platform
                 };
             } catch(error) { 

@@ -39,6 +39,7 @@ interface Shortscreenshot {
 export interface GamesResult {
     status: boolean;
     message: string;
+    elementSelect?: string;
     count?: number;
     next?: number;
     previous?: string | undefined;

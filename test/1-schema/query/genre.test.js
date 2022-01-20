@@ -1,7 +1,35 @@
+/* eslint-disable no-undef */
 const EasyGraphQLTester = require("easygraphql-tester");
 const { it } = require("mocha");
 
 const apiSchema = require("./../../mocks/api-schema");
+const resultGenresPropertiesCorrect = `
+...on ResultGenres {
+  status
+  message
+  count
+  next
+  previous
+  results {
+    id
+    name
+    slug
+  }
+}
+`;
+
+const resultGenrePropertiesCorrect = `
+genre(id: $id) {
+  ... on ResultGenre {
+    status
+    message
+    genre {
+      id
+      slug
+    }
+  }
+}
+`;
 
 // const tester =
 describe("Test Schema GraphQL - Query - genre.graphql", () => {
@@ -12,20 +40,7 @@ describe("Test Schema GraphQL - Query - genre.graphql", () => {
   it("'genres' válida", () => {
     const query = `{
         genres {
-          status
-          message
-          count
-          next
-          previous
-          results {
-            id
-            name
-            games_count
-            games {
-              id
-              name
-            }
-          }
+          ${resultGenresPropertiesCorrect}
         }
       }`;
     tester.test(true, query, {});
@@ -54,15 +69,7 @@ describe("Test Schema GraphQL - Query - genre.graphql", () => {
   it("'genre' - válida", () => {
     const query = `
     query getDetails($id: String!) {
-      genre(id: $id) {
-        status
-        message
-        genre {
-          id
-          name
-          slug
-        }
-      }
+      ${resultGenrePropertiesCorrect}
     }`;
     tester.test(true, query, {id: "4"});
   });

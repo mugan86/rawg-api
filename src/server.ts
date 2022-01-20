@@ -52,11 +52,11 @@ class GraphQLServer {
         tags: new dataSources.Tags(),
       }),
       // Para que podamos tener disponible el playground en producción
-      plugins: [
+      /*plugins: [
         process.env.NODE_ENV === "production"
           ? ApolloServerPluginLandingPageDisabled()
           : ApolloServerPluginLandingPageGraphQLPlayground(),
-      ],
+      ],*/
     });
 
     await apolloServer.start();

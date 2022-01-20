@@ -1,6 +1,7 @@
 export interface PlatformsResult {
     status: boolean;
     message: string;
+    elementSelect?: string;
     count?: number;
     next?: string;
     previous?: string;

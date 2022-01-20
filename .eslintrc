@@ -10,6 +10,6 @@
           "fixToUnknown": true
       }],
       "curly": "error",
-      "@typescript-eslint/no-var-requires": false
+      "@typescript-eslint/no-var-requires": 0
     }
   }

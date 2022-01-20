@@ -10,11 +10,11 @@ type Query {
     pass "3" id to take 'Adventure' genre details
     """
     id: String!
-  ): ResultGenre
+  ): Result
   """
   Get a list of video game genres
   -------------------------------
   More info in ["Video Games genres List"](https://api.rawg.io/docs/#operation/genres_list)
   """
-  genres: ResultGenres
+  genres: Result
 }

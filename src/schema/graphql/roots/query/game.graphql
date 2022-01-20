@@ -4,13 +4,13 @@ type Query {
   -------------------------------
   More info in ["Video Games select genre details"](https://api.rawg.io/docs/#operation/games_read)
   """
-  game(id: ID!): ResultGame
+  game(id: ID!): Result
   """
   Get a list of video games
   -------------------------------
   More info in ["Video Games List"](https://api.rawg.io/docs/#operation/games_list)
   """
-  games(page: Int = 1, itemsPage: Int = 20): ResultGames
+  games(page: Int = 1, itemsPage: Int = 20): Result
   """
   Get a list of video games between select two dates
   -------------------------------
@@ -21,5 +21,5 @@ type Query {
     finish: String
     page: Int = 1
     itemsPage: Int = 20
-  ): ResultGames
+  ): Result
 }

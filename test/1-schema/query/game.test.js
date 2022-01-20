@@ -1,7 +1,40 @@
+/* eslint-disable no-undef */
 const EasyGraphQLTester = require("easygraphql-tester");
 const { it } = require("mocha");
 
 const apiSchema = require("./../../mocks/api-schema");
+
+const resultGamesPropertiesCorrect = `
+...on ResultGames {
+  status
+  message
+  page
+  itemsPage
+  count
+  totalPages
+  next
+  previous
+  results {
+    id
+    name
+    slug
+    added
+  }
+}
+`;
+
+const resultGamePropertiesCorrect = `
+game(id: $id) {
+  ... on ResultGame {
+    status
+    message
+    game {
+      id
+      slug
+    }
+  }
+}
+`;
 
 // const tester =
 describe("Test Schema GraphQL - Query - game.graphql", () => {
@@ -13,20 +46,7 @@ describe("Test Schema GraphQL - Query - game.graphql", () => {
     const query = `
     {
         games {
-          status
-          message
-          page
-          itemsPage
-          count
-          totalPages
-          next
-          previous
-          results {
-            id
-            name
-            slug
-            added
-          }
+          ${resultGamesPropertiesCorrect}
         }
       }
     `;
@@ -36,20 +56,7 @@ describe("Test Schema GraphQL - Query - game.graphql", () => {
     const query = `
     query gamesList($page: Int){
         games (page: $page){
-          status
-          message
-          page
-          itemsPage
-          count
-          totalPages
-          next
-          previous
-          results {
-            id
-            name
-            slug
-            added
-          }
+          ${resultGamesPropertiesCorrect}
         }
       }`;
     tester.test(true, query, { page: 5 });
@@ -58,20 +65,7 @@ describe("Test Schema GraphQL - Query - game.graphql", () => {
     const query = `
           query gamesList($page: Int, $itemsPage: Int){
               games(page: $page, itemsPage: $itemsPage) {
-                status
-                message
-                page
-                itemsPage
-                count
-                totalPages
-                next
-                previous
-                results {
-                  id
-                  name
-                  slug
-                  added
-                }
+                ${resultGamesPropertiesCorrect}
               }
             }`;
     tester.test(true, query, { page: 2, itemsPage: 4 });
@@ -100,33 +94,17 @@ describe("Test Schema GraphQL - Query - game.graphql", () => {
   it("'game' - válida", () => {
     const query = `
     query getDetails($id: ID!) {
-      game(id: $id) {
-        status
-        message
-        game {
-          id
-          name
-          slug
-          added
-        }
-      }
+      ${resultGamePropertiesCorrect}
     }`;
-    tester.test(true, query, {id: 3498});
-    tester.test(true, query, {id: "3498"});
+    tester.test(true, query, { id: 3498 });
+    tester.test(true, query, { id: "3498" });
   });
 
   it("'game' - inválida - Sin Query Variables", () => {
     const query = `
     query getDetails($id: ID!) {
       game(id: $id) {
-        status
-        message
-        game {
-          id
-          name
-          slug
-          added
-        }
+        ${resultGamePropertiesCorrect}
       }
     }`;
     tester.test(false, query, {});
@@ -151,6 +129,6 @@ describe("Test Schema GraphQL - Query - game.graphql", () => {
         }
       }
     }`;
-    tester.test(false, query, {id: 3498});
+    tester.test(false, query, { id: 3498 });
   });
 });

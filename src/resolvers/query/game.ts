@@ -1,3 +1,4 @@
+import { ELEMENT_SELECTS } from "./../../config/constants";
 import { IResolvers } from "@graphql-tools/utils";
 import { GamesResult, GameItem } from "../../interfaces/games.interface";
 
@@ -14,6 +15,7 @@ const resolversGame: IResolvers = {
         return {
           status: true,
           message: "Games correct correctly",
+          elementSelect: ELEMENT_SELECTS.GAMES,
           count,
           page,
           itemsPage,
@@ -38,6 +40,7 @@ const resolversGame: IResolvers = {
         // console.log(game);
         return {
           status: true,
+          elementSelect: ELEMENT_SELECTS.GAME,
           message: `Games with ${id} correct correctly`,
           game,
         };

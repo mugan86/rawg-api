@@ -1,5 +1,6 @@
 import { GenresResult, GenreItem } from "./../../interfaces/genres.interface";
 import { IResolvers } from "@graphql-tools/utils";
+import { ELEMENT_SELECTS } from "../../config/constants";
 
 // Los resolvers de las operaciones de consulta para devolver información
 const resolversGenre: IResolvers = {
@@ -9,6 +10,7 @@ const resolversGenre: IResolvers = {
                 const genre: GenreItem= await dataSources.genres.getItem(id);
                 return {
                     status: true,
+                    elementSelect: ELEMENT_SELECTS.GENRE,
                     message: `Genre with ID ${ id } load successfully`,
                     genre
                 };
@@ -27,6 +29,7 @@ const resolversGenre: IResolvers = {
                 return  {
                     status: true,
                     message: "Genres correct correctly",
+                    elementSelect: ELEMENT_SELECTS.GENRES,
                     count,
                     next,
                     previous,
