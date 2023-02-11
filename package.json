@@ -59,7 +59,7 @@
     "easygraphql-tester": "^6.0.1",
     "eslint": "^8.7.0",
     "mocha": "^9.1.4",
-    "nodemon": "^2.0.15",
+    "nodemon": "^2.0.20",
     "ts-node": "^10.4.0"
   }
 }
